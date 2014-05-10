@@ -15,6 +15,7 @@ class GSNFriendlyCost(DefaultDataSpecsMixin, Cost):
 
         WRITEME
     """
+
     @staticmethod
     def cost(target, output):
         """
@@ -41,6 +42,7 @@ class MeanSquaredReconstructionError(GSNFriendlyCost):
 
         WRITEME
     """
+
     @staticmethod
     def cost(a, b):
         """
@@ -56,6 +58,7 @@ class MeanBinaryCrossEntropy(GSNFriendlyCost):
 
         WRITEME
     """
+
     @staticmethod
     def cost(target, output):
         """
@@ -82,6 +85,7 @@ class SampledMeanBinaryCrossEntropy(DefaultDataSpecsMixin, Cost):
     L1 : WRITEME
     ratio : WRITEME
     """
+
     def __init__(self, L1, ratio):
         self.random_stream = RandomStreams(seed=1)
         self.L1 = L1
@@ -144,6 +148,7 @@ class SampledMeanSquaredReconstructionError(MeanSquaredReconstructionError):
     L1 : WRITEME
     ratio : WRITEME
     """
+
     def __init__(self, L1, ratio):
         self.random_stream = RandomStreams(seed=1)
         self.L1 = L1
@@ -199,8 +204,11 @@ class SampledMeanSquaredReconstructionError(MeanSquaredReconstructionError):
 
 class SparseActivation(DefaultDataSpecsMixin, Cost):
     """
+    Autoencoder sparse activation cost.
+    
     Regularize on KL divergence from desired average activation of each
-    hidden unit as described in Andrew Ng's CS294A Lecture Notes.
+    hidden unit as described in Andrew Ng's CS294A Lecture Notes. See
+    http://www.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf.
 
     Parameters
     ----------
